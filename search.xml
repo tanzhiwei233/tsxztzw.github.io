@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title>在Github上搭服务器</title>
+      <link href="2020/10/15/zai-github-shang-da-fu-wu-qi/"/>
+      <url>2020/10/15/zai-github-shang-da-fu-wu-qi/</url>
+      
+        <content type="html"><![CDATA[<p>1、进入hexo官方文档</p><p><img src="/images/pasted-33.png" alt="upload successful"><br>2、在hexo的根目录下安装插件</p><p><img src="/images/pasted-34.png" alt="upload successful"><br>3.在配置文件_config.yml中配置</p><p><img src="/images/pasted-35.png" alt="upload successful"><br>4.repo是你github创库的地址</p><p><img src="/images/pasted-36.png" alt="upload successful"><br>5.打开终端，并hexo g &amp;&amp; hexo d 如出现</p><p><img src="/images/pasted-37.png" alt="upload successful"><br> 先运行这两个命令，去设置你的github的邮箱和名字<br>6、在hexo d，就会去连接你的github</p><p><img src="/images/pasted-38.png" alt="upload successful"><br>7.就会把你hexo文件部署到github上</p><p><img src="/images/pasted-39.png" alt="upload successful"><br>8、如果你没有域名，就用你的仓库名访问。<br>   如果你有域名（上一篇有介绍购买域名），就去域名解析</p><p><img src="/images/pasted-40.png" alt="upload successful"><br>9、然后再github上绑定你购买的域名</p><p><img src="/images/pasted-41.png" alt="upload successful"><br>10、在hexo根目录的source下创建CNAME。</p><p><img src="/images/pasted-42.png" alt="upload successful"><br>11、在重新部署hexo g &amp;&amp; hexo d</p><p>12、换主题的话，具体主题参考具体主题的文档</p><p><a href="https://github.com/search?q=hexo-theme">https://github.com/search?q=hexo-theme</a></p><p>我选择的是</p><p><img src="/images/pasted-43.png" alt="upload successful"><br>里面有详细的中文文档。</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>在云服务器上搭建博客</title>
       <link href="2020/10/14/zai-yun-fu-wu-qi-shang-da-jian-bo-ke/"/>
       <url>2020/10/14/zai-yun-fu-wu-qi-shang-da-jian-bo-ke/</url>

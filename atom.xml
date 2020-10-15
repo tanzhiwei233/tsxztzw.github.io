@@ -6,7 +6,7 @@
   <link href="http://www.tsxztzw.com/atom.xml" rel="self"/>
   
   <link href="http://www.tsxztzw.com/"/>
-  <updated>2020-10-14T02:09:46.932Z</updated>
+  <updated>2020-10-15T06:45:14.572Z</updated>
   <id>http://www.tsxztzw.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>在Github上搭服务器</title>
+    <link href="http://www.tsxztzw.com/2020/10/15/zai-github-shang-da-fu-wu-qi/"/>
+    <id>http://www.tsxztzw.com/2020/10/15/zai-github-shang-da-fu-wu-qi/</id>
+    <published>2020-10-15T06:31:00.000Z</published>
+    <updated>2020-10-15T06:45:14.572Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;1、进入hexo官方文档&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/pasted-33.png&quot; alt=&quot;upload successful&quot;&gt;&lt;br&gt;2、在hexo的根目录下安装插件&lt;/p&gt;
+&lt;p&gt;&lt;img</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>在云服务器上搭建博客</title>
