@@ -32,7 +32,7 @@
 <meta name="generator" content="Hexo 5.2.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="alternate" href="/atom.xml" title="明月清风" type="application/atom+xml">
-</head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 
@@ -482,8 +482,8 @@
 <p>开始安装Hexo</p>
 <p><code>npm install -g hexo-cli</code></p>
 <h3 id="开始使用"><a href="#开始使用" class="headerlink" title="开始使用"></a>开始使用</h3><p>安装 <code>Hexo</code> 完成后，请执行下列命令，<code>Hexo</code> 将会在指定文件夹中新建所需要的文件。</p>
-<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init &lt;folder&gt;</span><br><span class="line">$ cd &lt;folder&gt;</span><br></pre></td></tr></tbody></table></figure>
-
+<pre><code>$ hexo init &lt;folder&gt;
+$ cd &lt;folder&gt;</code></pre>
 <p><folder>,是你自己创建的文件夹（在哪使用Hexo），比如：/home/ubuntu/hexo/blog</folder></p>
 <p>初始化完成后，你的blog文件里就有</p>
 <p><img src="/images/pasted-30.png" alt="upload successful"></p>
@@ -526,8 +526,7 @@
 <p>}</p>
 <p><folder>是你放hexo的路径</folder></p>
 <p>修改完成后保存，输入以下命令重启 <code>Nginx</code>：</p>
-<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ nginx -s reload</span><br></pre></td></tr></tbody></table></figure>
-
+<pre><code>$ nginx -s reload</code></pre>
 <p>此时再次访问你的 IP 地址，若显示上文的 <code>Hexo</code> 初次运行的样子，则说明配置成功。</p>
 <p><strong>注意！</strong></p>
 <p>可能会报 403 错误，原因是 Nginx 没有权限访问 public文件夹，修改方法有两种： </p>
