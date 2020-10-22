@@ -478,7 +478,63 @@
 <li>TableLayout（表格布局）</li>
 <li>ConstraintLayout（约束布局）</li>
 </ol>
-<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">android:layout_width="..." 	//布局的通用属性</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<p>布局的通用属性：</p>
+<pre><code>android:id :当前布局的唯一标识
+android:layout_width :布局的宽度   （1）match-parent:宽度与父容器一致 ...
+android:layout_height :布局的高度   (1) wrap_content:该布局的高度恰好能包裹它的内容
+android:background="#00000000" :背景颜色
+android:layout_margin :设置当前布局与屏幕边界、周围布局或空间的距离，各种有各种的属性
+android:padding :设置当前布局内控件与该布局的距离
+必须要有长度和宽度，其他属性可以根据需求设置</code></pre>
+<h2 id="四、Android常见界面控件"><a href="#四、Android常见界面控件" class="headerlink" title="四、Android常见界面控件"></a>四、Android常见界面控件</h2><h3 id="1、简单控件的使用"><a href="#1、简单控件的使用" class="headerlink" title="1、简单控件的使用"></a>1、简单控件的使用</h3><h4 id="TextView控件：用于显示文本信息"><a href="#TextView控件：用于显示文本信息" class="headerlink" title="TextView控件：用于显示文本信息"></a>TextView控件：用于显示文本信息</h4><figure class="highlight"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;TextView</span><br><span class="line">        android:id=<span class="string">"@+id/edit"</span></span><br><span class="line">        android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">        android:layout_height=<span class="string">"wrap_content"</span></span><br><span class="line">        android:layout_margin=<span class="string">"5dp"</span></span><br><span class="line">        android:gravity=<span class="string">"center"</span></span><br><span class="line">        android:textSize=<span class="string">"34sp"</span>&gt;</span><br><span class="line"> &lt;/TextView&gt;</span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="Button控件：表示按钮，既可以显示文本，又可以显示图片，同时允许用户通过点击来执行操作。"><a href="#Button控件：表示按钮，既可以显示文本，又可以显示图片，同时允许用户通过点击来执行操作。" class="headerlink" title="Button控件：表示按钮，既可以显示文本，又可以显示图片，同时允许用户通过点击来执行操作。"></a>Button控件：表示按钮，既可以显示文本，又可以显示图片，同时允许用户通过点击来执行操作。</h4><figure class="highlight"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;Button</span><br><span class="line">            android:id=<span class="string">"@+id/btn1"</span></span><br><span class="line">            android:layout_width=<span class="string">"0dp"</span></span><br><span class="line">            android:layout_height=<span class="string">"wrap_content"</span></span><br><span class="line">            android:layout_weight=<span class="string">"1"</span></span><br><span class="line">            android:background=<span class="string">"#00000000"</span></span><br><span class="line">            android:onClick=<span class="string">"btnNum"</span></span><br><span class="line">            android:text=<span class="string">"1"</span></span><br><span class="line">            android:textSize="28sp"&gt;&lt;/Button&gt;</span><br></pre></td></tr></tbody></table></figure>
+
+<p>1、为Button控件设置点击事件的方式</p>
+<p>主要有以下三种方式：</p>
+<p>（1）<code>android:onClick="btnNum"</code></p>
+<p>然后在MainActivity中定义btnNum方法</p>
+<p><code>public void btnNum(View view)</code></p>
+<p>（2）匿名内部类，直接在onCreate()中使用</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">btn =findViewById(R.id.btn);      <span class="comment">//将变量和控件绑定</span></span><br><span class="line">btn.setOnClickListener(<span class="keyword">new</span> View.OnClickListener(){     <span class="comment">//匿名内部类</span></span><br><span class="line">	<span class="meta">@Override</span>    </span><br><span class="line">	<span class="function">pubilc <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View view)</span></span>{</span><br><span class="line">	  btn.serText(<span class="string">"..."</span>)	</span><br><span class="line">	  }</span><br><span class="line">})</span><br></pre></td></tr></tbody></table></figure>
+
+<p>(3)实现OnClickListener接口</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> <span class="keyword">implements</span> <span class="title">View</span>.<span class="title">OnClickListener</span> </span></span><br><span class="line"><span class="class"><span class="title">OnCreate</span>()</span>{</span><br><span class="line">	...</span><br><span class="line">	btn.setOnClickListener(<span class="keyword">this</span>);     <span class="comment">//打开监听事件</span></span><br><span class="line">}</span><br><span class="line"><span class="meta">@Override</span>    </span><br><span class="line">	<span class="function">pubilc <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View view)</span></span>{</span><br><span class="line">	  <span class="comment">//点击实现</span></span><br><span class="line"> }</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="EditText控件：编辑框"><a href="#EditText控件：编辑框" class="headerlink" title="EditText控件：编辑框"></a>EditText控件：编辑框</h4><h4 id="ImageView：图片"><a href="#ImageView：图片" class="headerlink" title="ImageView：图片"></a>ImageView：图片</h4><h4 id="RedionButton：单选按钮"><a href="#RedionButton：单选按钮" class="headerlink" title="RedionButton：单选按钮"></a>RedionButton：单选按钮</h4><h4 id="CheckBox：复选框"><a href="#CheckBox：复选框" class="headerlink" title="CheckBox：复选框"></a>CheckBox：复选框</h4><h4 id="Toast：轻量级信息提醒机制"><a href="#Toast：轻量级信息提醒机制" class="headerlink" title="Toast：轻量级信息提醒机制"></a>Toast：轻量级信息提醒机制</h4><p>…</p>
+<h3 id="2、AlertDialog对话框的使用"><a href="#2、AlertDialog对话框的使用" class="headerlink" title="2、AlertDialog对话框的使用"></a>2、AlertDialog对话框的使用</h3><p>使用AlertDialog创建的对话框一般包含标题，内容和按钮三个区域</p>
+<h4 id="普通对话框"><a href="#普通对话框" class="headerlink" title="普通对话框"></a>普通对话框</h4><p><img src="/images/pasted-50.png"></p>
+<pre><code>/**
+ * 重写onBackPressed()来监听回退键
+ */
+public void onBackPressed(){
+    //申明对象
+    AlertDialog dialog;
+    AlertDialog.Builder builder = new AlertDialog.Builder(this)
+            .setTitle("普通对话框")
+            .setIcon(R.mipmap.ic_launcher)
+            .setMessage("是否确定退出应用：")
+            //添加"确定"按钮
+            .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();  //关闭对话框
+                    MainActivity.this.finish();  //关闭MainActivity
+                }
+            })
+            //添加"取消"按钮
+            .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+    dialog = builder.create();
+    dialog.show();
+
+}</code></pre>
+<p>```</p>
+
             </div>
             <hr/>
 
