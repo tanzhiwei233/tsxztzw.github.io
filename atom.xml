@@ -6,7 +6,7 @@
   <link href="http://www.tsxztzw.com/atom.xml" rel="self"/>
   
   <link href="http://www.tsxztzw.com/"/>
-  <updated>2020-10-22T12:41:02.477Z</updated>
+  <updated>2020-10-24T08:58:50.856Z</updated>
   <id>http://www.tsxztzw.com/</id>
   
   <author>
@@ -17,11 +17,36 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>android小案例</title>
+    <link href="http://www.tsxztzw.com/2020/10/21/android-xiang-mu-an-li/"/>
+    <id>http://www.tsxztzw.com/2020/10/21/android-xiang-mu-an-li/</id>
+    <published>2020-10-21T11:35:00.000Z</published>
+    <updated>2020-10-24T08:58:50.856Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Android小案例&quot;&gt;&lt;a href=&quot;#Android小案例&quot; class=&quot;headerlink&quot; title=&quot;Android小案例&quot;&gt;&lt;/a&gt;Android小案例&lt;/h1&gt;&lt;h2 id=&quot;自定义对话框&quot;&gt;&lt;a href=&quot;#自定义对话框&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="学习" scheme="http://www.tsxztzw.com/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="android" scheme="http://www.tsxztzw.com/tags/android/"/>
+    
+  </entry>
+  
+  <entry>
     <title>android基础</title>
     <link href="http://www.tsxztzw.com/2020/10/19/android-ji-chu/"/>
     <id>http://www.tsxztzw.com/2020/10/19/android-ji-chu/</id>
     <published>2020-10-19T09:03:00.000Z</published>
-    <updated>2020-10-22T12:41:02.477Z</updated>
+    <updated>2020-10-24T08:59:33.150Z</updated>
     
     
       

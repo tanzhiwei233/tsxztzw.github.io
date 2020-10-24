@@ -614,6 +614,13 @@ public void onBackPressed(){
     dialog.show();
 
 }</code></pre>
+<h4 id="单选对话框"><a href="#单选对话框" class="headerlink" title="单选对话框"></a>单选对话框</h4><pre class=" language-java"><code class="language-java"> AlertDialog<span class="token punctuation">.</span>Builder builder <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">AlertDialog<span class="token punctuation">.</span>Builder</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span>
+ <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+ <span class="token punctuation">.</span><span class="token function">setSingleChoiceItems</span><span class="token punctuation">(</span>CharSequence<span class="token punctuation">[</span><span class="token punctuation">]</span> items<span class="token punctuation">,</span><span class="token keyword">int</span> checkedItem<span class="token punctuation">,</span>OnClickListener listener<span class="token punctuation">)</span></code></pre>
+<h4 id="多选对话框"><a href="#多选对话框" class="headerlink" title="多选对话框"></a>多选对话框</h4><pre class=" language-java"><code class="language-java"> AlertDialog<span class="token punctuation">.</span>Builder builder <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">AlertDialog<span class="token punctuation">.</span>Builder</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span>
+ <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+ <span class="token punctuation">.</span><span class="token function">setMultiChoiceItems</span><span class="token punctuation">(</span>CharSequence<span class="token punctuation">[</span><span class="token punctuation">]</span> items<span class="token punctuation">,</span><span class="token keyword">int</span> checkedItem<span class="token punctuation">,</span>OnClickListener listener<span class="token punctuation">)</span></code></pre>
+<h4 id="自定义对话框-android小案例"><a href="#自定义对话框-android小案例" class="headerlink" title="自定义对话框(android小案例)"></a>自定义对话框(android小案例)</h4><p>…</p>
 <p>```</p>
 
             </div>
@@ -890,18 +897,17 @@ public void onBackPressed(){
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/10/19/android-ji-chu/">
+                <a href="/2020/10/21/android-xiang-mu-an-li/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="android基础">
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="android小案例">
                         
-                        <span class="card-title">android基础</span>
+                        <span class="card-title">android小案例</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -911,9 +917,9 @@ public void onBackPressed(){
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-10-19
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-10-21
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -926,7 +932,6 @@ public void onBackPressed(){
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
