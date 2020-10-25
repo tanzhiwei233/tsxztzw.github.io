@@ -997,6 +997,155 @@
 
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>manifest</span><span class="token punctuation">></span></span></code></pre>
 <p><img src="/images/pasted-52.png"></p>
+<h2 id="滚动列表"><a href="#滚动列表" class="headerlink" title="滚动列表"></a>滚动列表</h2><p><img src="/images/pasted-58.png"><br>先将要展示商品的图片准备好，在res中创建放图片的文件夹drawable-hdpi</p>
+<p><img src="/images/pasted-59.png"></p>
+<p>添加recyclerview库，在build.gradle文件中添加</p>
+<p><code>implementation 'com.android.support:recyclerview-v7:25.0.0.0'</code></p>
+<p>注意：后面的版本号，要在你的SDK中recyclerview文件夹中要有，不然会报红</p>
+<p>在activity_main.xml中添加RecyclerView控件</p>
+<pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>androidx.recyclerview.widget.RecyclerView</span>
+    <span class="token attr-name"><span class="token namespace">android:</span>id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>@+id/my_recycler_view<span class="token punctuation">"</span></span>
+    <span class="token attr-name"><span class="token namespace">android:</span>layout_width</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>match_parent<span class="token punctuation">"</span></span>
+    <span class="token attr-name"><span class="token namespace">android:</span>layout_height</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>match_parent<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span></code></pre>
+<p>这里如果用&lt;android.support.v7.widget.RecyclerView&gt;，可能会导致闪退（原因是高版本的android已经将项目升级到了androidx了，下图是如何将旧项目升级为androidx）</p>
+<p><img src="/images/pasted-60.png"><br>创建一个列表界面recycler_item.xml</p>
+<pre class=" language-xml"><code class="language-xml"><span class="token prolog">&lt;?xml version="1.0" encoding="utf-8"?></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>LinearLayout</span> <span class="token attr-name"><span class="token namespace">xmlns:</span>android</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://schemas.android.com/apk/res/android<span class="token punctuation">"</span></span>
+    <span class="token attr-name"><span class="token namespace">android:</span>layout_width</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>match_parent<span class="token punctuation">"</span></span>
+    <span class="token attr-name"><span class="token namespace">android:</span>layout_height</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>wrap_content<span class="token punctuation">"</span></span>
+    <span class="token attr-name"><span class="token namespace">android:</span>padding</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>16dp<span class="token punctuation">"</span></span>
+    <span class="token attr-name"><span class="token namespace">android:</span>gravity</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>center<span class="token punctuation">"</span></span>
+    <span class="token attr-name"><span class="token namespace">android:</span>orientation</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>horizontal<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ImageView</span>
+        <span class="token attr-name"><span class="token namespace">android:</span>id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>@+id/iv<span class="token punctuation">"</span></span>
+        <span class="token attr-name"><span class="token namespace">android:</span>layout_width</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>120dp<span class="token punctuation">"</span></span>
+        <span class="token attr-name"><span class="token namespace">android:</span>layout_height</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>90dp<span class="token punctuation">"</span></span>
+        <span class="token attr-name"><span class="token namespace">android:</span>src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>@drawable/xiaogou<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>RelativeLayout</span>
+        <span class="token attr-name"><span class="token namespace">android:</span>layout_width</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>wrap_content<span class="token punctuation">"</span></span>
+        <span class="token attr-name"><span class="token namespace">android:</span>layout_height</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>wrap_content<span class="token punctuation">"</span></span>
+        <span class="token attr-name"><span class="token namespace">android:</span>layout_marginLeft</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>10dp<span class="token punctuation">"</span></span>
+        <span class="token attr-name"><span class="token namespace">android:</span>layout_marginTop</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>5dp<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>TextView</span>
+            <span class="token attr-name"><span class="token namespace">android:</span>id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>@+id/name<span class="token punctuation">"</span></span>
+            <span class="token attr-name"><span class="token namespace">android:</span>layout_width</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>wrap_content<span class="token punctuation">"</span></span>
+            <span class="token attr-name"><span class="token namespace">android:</span>layout_height</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>wrap_content<span class="token punctuation">"</span></span>
+            <span class="token attr-name"><span class="token namespace">android:</span>textSize</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>20sp<span class="token punctuation">"</span></span>
+            <span class="token attr-name"><span class="token namespace">android:</span>textColor</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>#FF8F03<span class="token punctuation">"</span></span>
+            <span class="token attr-name"><span class="token namespace">android:</span>text</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>小狗<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>TextView</span>
+            <span class="token attr-name"><span class="token namespace">android:</span>id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>@+id/introduce<span class="token punctuation">"</span></span>
+            <span class="token attr-name"><span class="token namespace">android:</span>layout_width</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>wrap_content<span class="token punctuation">"</span></span>
+            <span class="token attr-name"><span class="token namespace">android:</span>layout_height</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>wrap_content<span class="token punctuation">"</span></span>
+            <span class="token attr-name"><span class="token namespace">android:</span>textSize</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>16sp<span class="token punctuation">"</span></span>
+            <span class="token attr-name"><span class="token namespace">android:</span>layout_marginTop</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>10dp<span class="token punctuation">"</span></span>
+            <span class="token attr-name"><span class="token namespace">android:</span>layout_below</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>@+id/name<span class="token punctuation">"</span></span>
+            <span class="token attr-name"><span class="token namespace">android:</span>textColor</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>#FF716C6D<span class="token punctuation">"</span></span>
+            <span class="token attr-name"><span class="token namespace">android:</span>maxLines</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>2<span class="token punctuation">"</span></span>
+            <span class="token attr-name"><span class="token namespace">android:</span>ellipsize</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>end<span class="token punctuation">"</span></span>
+            <span class="token attr-name"><span class="token namespace">android:</span>text</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>小狗，人类最忠实的朋友<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>RelativeLayout</span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>LinearLayout</span><span class="token punctuation">></span></span></code></pre>
+<p>最终编写界面交互代码MainActivity.java</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> com<span class="token punctuation">.</span>wuyugege<span class="token punctuation">.</span>recyclerview<span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> androidx<span class="token punctuation">.</span>appcompat<span class="token punctuation">.</span>app<span class="token punctuation">.</span>AppCompatActivity<span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> androidx<span class="token punctuation">.</span>recyclerview<span class="token punctuation">.</span>widget<span class="token punctuation">.</span>LinearLayoutManager<span class="token punctuation">;</span>
+<span class="token keyword">import</span> androidx<span class="token punctuation">.</span>recyclerview<span class="token punctuation">.</span>widget<span class="token punctuation">.</span>RecyclerView<span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> android<span class="token punctuation">.</span>os<span class="token punctuation">.</span>Bundle<span class="token punctuation">;</span>
+<span class="token keyword">import</span> android<span class="token punctuation">.</span>view<span class="token punctuation">.</span>LayoutInflater<span class="token punctuation">;</span>
+<span class="token keyword">import</span> android<span class="token punctuation">.</span>view<span class="token punctuation">.</span>View<span class="token punctuation">;</span>
+<span class="token keyword">import</span> android<span class="token punctuation">.</span>view<span class="token punctuation">.</span>ViewGroup<span class="token punctuation">;</span>
+<span class="token keyword">import</span> android<span class="token punctuation">.</span>widget<span class="token punctuation">.</span>ImageView<span class="token punctuation">;</span>
+<span class="token keyword">import</span> android<span class="token punctuation">.</span>widget<span class="token punctuation">.</span>TextView<span class="token punctuation">;</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MainActivity</span> <span class="token keyword">extends</span> <span class="token class-name">AppCompatActivity</span> <span class="token punctuation">{</span>
+    <span class="token keyword">private</span> RecyclerView myRecyclerView<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> HomeAdapter homeAdapter<span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">/**
+     * 3个数组分别储存物品的名称，图片，简介
+     */</span>
+    <span class="token keyword">private</span> String<span class="token punctuation">[</span><span class="token punctuation">]</span> names <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">"小狗"</span><span class="token punctuation">,</span> <span class="token string">"小猫"</span><span class="token punctuation">,</span> <span class="token string">"小兔子"</span><span class="token punctuation">,</span> <span class="token string">"小羊"</span><span class="token punctuation">,</span> <span class="token string">"小鸭子"</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> icons <span class="token operator">=</span> <span class="token punctuation">{</span>R<span class="token punctuation">.</span>drawable<span class="token punctuation">.</span>xiaogou<span class="token punctuation">,</span> R<span class="token punctuation">.</span>drawable<span class="token punctuation">.</span>xiaomao<span class="token punctuation">,</span> R<span class="token punctuation">.</span>drawable<span class="token punctuation">.</span>xiaotuzi<span class="token punctuation">,</span> R<span class="token punctuation">.</span>drawable<span class="token punctuation">.</span>xiaoyang<span class="token punctuation">,</span> R<span class="token punctuation">.</span>drawable<span class="token punctuation">.</span>xiaoyazi<span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token keyword">private</span> String<span class="token punctuation">[</span><span class="token punctuation">]</span> introduces <span class="token operator">=</span> <span class="token punctuation">{</span>
+            <span class="token string">"狗（拉丁文Canis lupus familiaris）属于脊索动物门、脊椎动物亚门、哺乳纲、真兽亚纲、食肉目、裂脚亚目、犬科动物。中文亦称“犬”，狗分布于世界各地。狗与马、牛、羊、猪、鸡并称“六畜”。有科学家认为狗是由早期人类从灰狼驯化而来，驯养时间在4万年前~1.5万年前。被称为“人类最忠实的朋友”，是饲养率最高的宠物，其寿命大约在12~18年 [1]  。在中国文化中，狗属于十二生肖之一，在十二生肖中的第11位。 [2] "</span><span class="token punctuation">,</span>
+            <span class="token string">"猫，属于猫科动物，分家猫、野猫，是全世界家庭中较为广泛的宠物。家猫的祖先据推测是起源于古埃及的沙漠猫，波斯的波斯猫，已经被人类驯化了3500年（但未像狗一样完全地被驯化）。"</span><span class="token punctuation">,</span>
+            <span class="token string">"兔（Rabbit）是哺乳类兔形目兔科下属所有的属的总称。俗称兔子。生物学分类动物界脊索动物门 脊椎动物亚门 哺乳纲 兔形目。"</span><span class="token punctuation">,</span>
+            <span class="token string">"羊是羊亚科的统称，哺乳纲、偶蹄目、牛科、羊亚科，是人类的家畜之一。有毛的四腿反刍动物，是羊毛的主要来源。毛色主要是白色。我国主要饲养山羊和绵羊。"</span><span class="token punctuation">,</span>
+            <span class="token string">"鸭是雁形目鸭科（Anatidae）鸭亚科（Anatinae）水禽的统称，或称真鸭。鸭的体型相对较小，颈短，一些属的嘴要大些。腿位于身体后方（如同天鹅一样），因而步态蹒跚。大多数真鸭（包括由于个体大小和体形原因而被不正确地称为雁的几种鸟）与天鹅、雁不同，具有下列特征：雄鸟每年换羽两次，雌鸟每窝产卵数亦较多，卵壳光滑；腿上覆盖著相搭的鳞片；叫声则显示出某种程度的性别差异。"</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">onCreate</span><span class="token punctuation">(</span>Bundle savedInstanceState<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">onCreate</span><span class="token punctuation">(</span>savedInstanceState<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">setContentView</span><span class="token punctuation">(</span>R<span class="token punctuation">.</span>layout<span class="token punctuation">.</span>activity_main<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        myRecyclerView <span class="token operator">=</span> <span class="token function">findViewById</span><span class="token punctuation">(</span>R<span class="token punctuation">.</span>id<span class="token punctuation">.</span>my_recycler_view<span class="token punctuation">)</span><span class="token punctuation">;</span>                              <span class="token comment" spellcheck="true">//获取到控件</span>
+        myRecyclerView<span class="token punctuation">.</span><span class="token function">setLayoutManager</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">LinearLayoutManager</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>             <span class="token comment" spellcheck="true">//在通过setLayoutManager()方法设置线性垂直效果</span>
+        homeAdapter <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HomeAdapter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                                                    
+        myRecyclerView<span class="token punctuation">.</span><span class="token function">setAdapter</span><span class="token punctuation">(</span>homeAdapter<span class="token punctuation">)</span><span class="token punctuation">;</span>                                             <span class="token comment" spellcheck="true">//将数据适配器（处理好的数据）设置到控件上</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">class</span> <span class="token class-name">HomeAdapter</span> <span class="token keyword">extends</span> <span class="token class-name">RecyclerView<span class="token punctuation">.</span>Adapter</span><span class="token operator">&lt;</span>HomeAdapter<span class="token punctuation">.</span>MyViewHolder<span class="token operator">></span> <span class="token punctuation">{</span>              <span class="token comment" spellcheck="true">//数据适配器</span>
+        <span class="token comment" spellcheck="true">/**
+         * 加载列表界面的布局文件
+         * @param parent
+         * @param viewType
+         * @return
+         */</span>
+        <span class="token annotation punctuation">@Override</span>
+        <span class="token keyword">public</span> MyViewHolder <span class="token function">onCreateViewHolder</span><span class="token punctuation">(</span>ViewGroup parent<span class="token punctuation">,</span> <span class="token keyword">int</span> viewType<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            MyViewHolder holder <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">MyViewHolder</span><span class="token punctuation">(</span>LayoutInflater<span class="token punctuation">.</span><span class="token function">from</span><span class="token punctuation">(</span>MainActivity<span class="token punctuation">.</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">inflate</span><span class="token punctuation">(</span>R<span class="token punctuation">.</span>layout<span class="token punctuation">.</span>recycler_item<span class="token punctuation">,</span> parent<span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> holder<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token comment" spellcheck="true">/**
+         * 获取对应的数据放到对应的控件上
+         * @param holder
+         * @param position
+         */</span>
+        <span class="token annotation punctuation">@Override</span>
+        <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">onBindViewHolder</span><span class="token punctuation">(</span> MyViewHolder holder<span class="token punctuation">,</span> <span class="token keyword">int</span> position<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            holder<span class="token punctuation">.</span>name<span class="token punctuation">.</span><span class="token function">setText</span><span class="token punctuation">(</span>names<span class="token punctuation">[</span>position<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            holder<span class="token punctuation">.</span>iv<span class="token punctuation">.</span><span class="token function">setImageResource</span><span class="token punctuation">(</span>icons<span class="token punctuation">[</span>position<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            holder<span class="token punctuation">.</span>introduce<span class="token punctuation">.</span><span class="token function">setText</span><span class="token punctuation">(</span>introduces<span class="token punctuation">[</span>position<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token comment" spellcheck="true">/**
+         * 获取列表的总条数
+         * @return
+         */</span>
+        <span class="token annotation punctuation">@Override</span>
+        <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">getItemCount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> names<span class="token punctuation">.</span>length<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token comment" spellcheck="true">/**
+         * 该类作为单独的一个列表，用于获取Item的控件
+         */</span>
+        <span class="token keyword">class</span> <span class="token class-name">MyViewHolder</span> <span class="token keyword">extends</span> <span class="token class-name">RecyclerView<span class="token punctuation">.</span>ViewHolder</span> <span class="token punctuation">{</span>
+            TextView name<span class="token punctuation">;</span>
+            ImageView iv<span class="token punctuation">;</span>
+            TextView introduce<span class="token punctuation">;</span>
+
+            <span class="token keyword">public</span> <span class="token function">MyViewHolder</span><span class="token punctuation">(</span>View view<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">super</span><span class="token punctuation">(</span>view<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                name <span class="token operator">=</span> view<span class="token punctuation">.</span><span class="token function">findViewById</span><span class="token punctuation">(</span>R<span class="token punctuation">.</span>id<span class="token punctuation">.</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                iv <span class="token operator">=</span> view<span class="token punctuation">.</span><span class="token function">findViewById</span><span class="token punctuation">(</span>R<span class="token punctuation">.</span>id<span class="token punctuation">.</span>iv<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                introduce <span class="token operator">=</span> view<span class="token punctuation">.</span><span class="token function">findViewById</span><span class="token punctuation">(</span>R<span class="token punctuation">.</span>id<span class="token punctuation">.</span>introduce<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+</code></pre>
 
             </div>
             <hr/>
