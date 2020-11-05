@@ -1148,113 +1148,157 @@
 </code></pre>
 <p>页面跳转</p>
 <p><img src="/images/pasted-61.png"><br>1、创建第二个Activity，用Intent接收主Avtivity传过来的数据</p>
-<p>package com.wuyugege.pagejump;</p>
-<p>import androidx.appcompat.app.AppCompatActivity;<br>import android.content.Intent;<br>import android.os.Bundle;<br>import android.widget.TextView;</p>
-<p>public class SecondActivity extends AppCompatActivity {<br>    private TextView hobbys;<br>    @Override<br>    protected void onCreate(Bundle savedInstanceState) {<br>        super.onCreate(savedInstanceState);<br>        setContentView(R.layout.activity_second);<br>        Intent intent = getIntent();    //接收intent<br>        String hobby = intent.getStringExtra(“hobby”);<br>        hobbys =  findViewById(R.id.hobbyview);<br>        hobbys.setText(hobby);<br>    }<br>}</p>
+<pre><code>package com.wuyugege.pagejump;
+
+import androidx.appcompat.app.AppCompatActivity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.widget.TextView;
+
+public class SecondActivity extends AppCompatActivity {
+    private TextView hobbys;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_second);
+        Intent intent = getIntent();    //接收intent
+        String hobby = intent.getStringExtra("hobby");
+        hobbys =  findViewById(R.id.hobbyview);
+        hobbys.setText(hobby);
+    }
+}</code></pre>
 <p>清单文件中有</p>
 <pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>activity</span> <span class="token attr-name"><span class="token namespace">android:</span>name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>.SecondActivity<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>activity</span><span class="token punctuation">></span></span></code></pre>
-<p>主布局文件mainLayout<br><!--?xml version="1.0" encoding="utf-8"?--><br><linearlayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent" android:layout_height="match_parent" tools:context=".MainActivity" android:orientation="vertical"></linearlayout></p>
-<pre><code>&lt;TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:textSize="18sp"
-    android:text="请选择兴趣爱好："
-    android:autoSizeMaxTextSize="18sp"/&gt;
-
-&lt;CheckBox
-    android:id="@+id/likeshuttlecock"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="羽毛球"
-    android:textSize="18sp"/&gt;
-
-&lt;CheckBox
-    android:id="@+id/likebasketball"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="篮球"
-    android:textSize="18sp"/&gt;
-
-&lt;CheckBox
-    android:id="@+id/likepingpong"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="乒乓球"
-    android:textSize="18sp"/&gt;
-
-&lt;Button
-    android:id="@+id/btn"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="提交"
-    tools:layout_editor_absoluteX="157dp"
-    tools:layout_editor_absoluteY="282dp" /&gt;</code></pre>
+<p>主布局文件mainLayout</p>
+<pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical"&gt;
 
 
-<p>第二个布局文件<br><!--?xml version="1.0" encoding="utf-8"?--><br><linearlayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent" android:layout_height="match_parent" tools:context=".SecondActivity"></linearlayout></p>
-<pre><code>&lt;TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="你选择的爱好是："/&gt;
-&lt;TextView
-    android:id="@+id/hobbyview"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:textSize="18sp"/&gt;</code></pre>
+    &lt;TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:text="请选择兴趣爱好："
+        android:autoSizeMaxTextSize="18sp"/&gt;
+
+    &lt;CheckBox
+        android:id="@+id/likeshuttlecock"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="羽毛球"
+        android:textSize="18sp"/&gt;
+
+    &lt;CheckBox
+        android:id="@+id/likebasketball"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="篮球"
+        android:textSize="18sp"/&gt;
+
+    &lt;CheckBox
+        android:id="@+id/likepingpong"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="乒乓球"
+        android:textSize="18sp"/&gt;
+
+    &lt;Button
+        android:id="@+id/btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="提交"
+        tools:layout_editor_absoluteX="157dp"
+        tools:layout_editor_absoluteY="282dp" /&gt;
+
+&lt;/LinearLayout&gt;</code></pre>
+<p>第二个布局文件</p>
+<pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SecondActivity"&gt;
+
+    &lt;TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="你选择的爱好是："/&gt;
+    &lt;TextView
+        android:id="@+id/hobbyview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"/&gt;
+&lt;/LinearLayout&gt;</code></pre>
+<p>主页面</p>
+<pre><code>package com.wuyugege.pagejump;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.TextView;
+
+public class MainActivity extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener{
+
+    private Button button;
+    private String hobbys = new String();
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        //初始化控件
+        CheckBox shuttlecock = findViewById(R.id.likeshuttlecock);
+        CheckBox basketball = findViewById(R.id.likebasketball);
+        CheckBox pingpong = findViewById(R.id.likepingpong);
+        button = findViewById(R.id.btn);
+
+        //接口实现点击事件
+        shuttlecock.setOnCheckedChangeListener(this);
+        basketball.setOnCheckedChangeListener(this);
+        pingpong.setOnCheckedChangeListener(this);
 
 
-<p>主页面<br>package com.wuyugege.pagejump;</p>
-<p>import androidx.appcompat.app.AppCompatActivity;</p>
-<p>import android.content.Intent;<br>import android.os.Bundle;<br>import android.view.View;<br>import android.widget.Button;<br>import android.widget.CheckBox;<br>import android.widget.CompoundButton;<br>import android.widget.TextView;</p>
-<p>public class MainActivity extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener{</p>
-<pre><code>private Button button;
-private String hobbys = new String();
-@Override
-protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_main);
+        /**
+         * 点击跳转
+         */
+        button.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,SecondActivity.class);   //点击后跳转页面
+                intent.putExtra("hobby",hobbys);      //将数据放入intent
+                startActivity(intent);
+            }
+        });
 
-    //初始化控件
-    CheckBox shuttlecock = findViewById(R.id.likeshuttlecock);
-    CheckBox basketball = findViewById(R.id.likebasketball);
-    CheckBox pingpong = findViewById(R.id.likepingpong);
-    button = findViewById(R.id.btn);
-
-    //接口实现点击事件
-    shuttlecock.setOnCheckedChangeListener(this);
-    basketball.setOnCheckedChangeListener(this);
-    pingpong.setOnCheckedChangeListener(this);
+    }
 
 
-    /**
-     * 点击跳转
-     */
-    button.setOnClickListener(new View.OnClickListener(){
-        @Override
-        public void onClick(View v) {
-            Intent intent = new Intent(MainActivity.this,SecondActivity.class);   //点击后跳转页面
-            intent.putExtra("hobby",hobbys);      //将数据放入intent
-            startActivity(intent);
-        }
-    });
+    public void onCheckedChanged(CompoundButton buttonView,boolean isChecked){
+        String motion =  buttonView.getText().toString();
 
-}
-
-
-public void onCheckedChanged(CompoundButton buttonView,boolean isChecked){
-    String motion =  buttonView.getText().toString();
-
-    if (isChecked){
-        if (!hobbys.contains(motion)){
-            hobbys = hobbys + motion;
-        }
-    }else {
-        if (hobbys.contains(motion)){
-            hobbys = hobbys.replace(motion," ");
+        if (isChecked){
+            if (!hobbys.contains(motion)){
+                hobbys = hobbys + motion;
+            }
+        }else {
+            if (hobbys.contains(motion)){
+                hobbys = hobbys.replace(motion," ");
+            }
         }
     }
 }</code></pre>
-<p>}</p>
 
             </div>
             <hr/>
